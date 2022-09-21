@@ -2,7 +2,7 @@
 -Javascript framework: React 
 -Css framework: Material UI 
 -The state of the app is handled with: Redux using redux toolkit
--Requests to the api with: Axios using RTK Query
+-Requests to the api with: RTK Query
 -Module Bundler: Vite 
 -Package Manager: Yarn  
 React Components Desing Patters using in this project:  
