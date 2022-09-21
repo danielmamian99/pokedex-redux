@@ -1,8 +1,13 @@
 import { Grid, Pagination } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { setPage } from "../../../store";
+
 
 export const HomePagination = () => {
+  const dispatch = useDispatch();
+  const {page} = useSelector(state => state.page)
   const handlePageChange = (event, value) => {
-    console.log(value);
+    dispatch(setPage(value))
   };
   return (
     <Grid container justifyContent="center" marginBottom={2}>
@@ -10,8 +15,9 @@ export const HomePagination = () => {
         color="primary"
         onChange={handlePageChange}
         size="large"
-        defaultPage={1}
         count={73}
+        value={page}
+        page={page}
         variant="outlined"
         shape="rounded"
       />

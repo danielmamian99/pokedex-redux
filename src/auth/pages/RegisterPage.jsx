@@ -1,13 +1,11 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
+import { useState } from "react";
 
 import { Button, Grid, Link, TextField, Typography } from "@mui/material";
 
 import { AuthLayout } from "../layout/AuthLayout";
 
-export const LoginPage = () => {
-  const navigate = useNavigate();
+export const RegisterPage = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const handleName = (event) => {
@@ -16,15 +14,14 @@ export const LoginPage = () => {
   const handlePassword = (event) => {
     setPassword(event.target.value);
   };
-  const onLogin = (event) => {
+  const onRegister = (event) => {
     event.preventDefault();
-    if (!name || !password) return;
-    navigate("/pokedex/home");
-  };
 
+    if (!name || !password) return;
+  };
   return (
-    <AuthLayout title="Login">
-      <form onSubmit={onLogin}>
+    <AuthLayout title="Create account">
+      <form onSubmit={onRegister}>
         <Grid container>
           <Grid item xs={12} sx={{ mt: 2 }}>
             <TextField
@@ -49,26 +46,30 @@ export const LoginPage = () => {
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
             <Grid item xs={12}>
               <Button
-                onClick={onLogin}
+                onClick={onRegister}
                 color="secondary"
                 variant="contained"
                 fullWidth
               >
-                Login
+                Create account
               </Button>
             </Grid>
           </Grid>
-          {/* {loginStatus != "" && (
-            <Typography fontWeight="bold" color="secondary">
-              {" "}
-              {loginStatus}{" "}
-            </Typography>
-          )} */}
+
           <Grid container direction="row" justifyContent="end">
-            <Link component={RouterLink} color="inherit" to="/register">
-              Create account
+            <Typography sx={{ mr: 1 }}> Do you have an account?</Typography>
+            <Link component={RouterLink} color="inherit" to="/auth/login">
+              Login
             </Link>
           </Grid>
+          {/* {registerStatus != "" && (
+            <Typography
+              fontWeight="bold"
+              color={registerStatus === "Sucess" ? "#4ab03a" : "secondary"}
+            >
+              {registerStatus}
+            </Typography>
+          )} */}
         </Grid>
       </form>
     </AuthLayout>

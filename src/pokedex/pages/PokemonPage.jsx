@@ -10,17 +10,17 @@ import {
   PokemonDescripcion,
   ButtonsNavigation,
 } from "../components";
-import { useFetchPokemon } from "../hooks";
+import { useGetPokemonByNameQuery } from "../../store/apis";
 
 export const PokemonPage = () => {
   const { id } = useParams();
-  const { pokemon, loading, error } = useFetchPokemon(id);
+  const {data:pokemon, isLoading, isError} = useGetPokemonByNameQuery(id);
   return (
     <PokedexLayout>
-      {loading ? (
+      {isLoading ? (
         <Spinner />
-      ) : error || id > 898 ? (
-        <Error message={error.message} />
+      ) : isError || id > 898 ? (
+        <Error/>
       ) : (
         <Grid>
           <ButtonsNavigation id={pokemon.id} />
@@ -34,7 +34,7 @@ export const PokemonPage = () => {
             justifyContent="center"
           >
             <Grid item xs={12} sm={6}>
-              <PokemonCard urlImage={pokemon.img} name={pokemon.name} />
+              <PokemonCard urlImage={pokemon.sprites.other['official-artwork']['front_default']} name={pokemon.name} />
             </Grid>
             <Grid item xs={8} sm={6} sx={{ height: "100%" }}>
               <PokemonDescripcion pokemon={pokemon} />
