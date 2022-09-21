@@ -12,8 +12,10 @@ import {
 import { LogoutOutlined } from "@mui/icons-material";
 
 import { SearchComponent } from "./SearchComponent";
+import { memo } from "react";
 
-export const NavBar = () => {
+export const NavBar = memo(() => {
+  console.count('navBar')
   return (
     <AppBar position="fixed" color="secondary" sx={{ height: "9%" }}>
       <Toolbar>
@@ -56,4 +58,4 @@ export const NavBar = () => {
       </Toolbar>
     </AppBar>
   );
-};
+});

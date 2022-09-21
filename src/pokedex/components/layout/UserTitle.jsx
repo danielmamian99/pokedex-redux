@@ -1,6 +1,9 @@
 import { Grid, Typography } from "@mui/material";
+import { memo } from "react";
 
-export const UserTitle = ({ title }) => {
+
+export const UserTitle = memo(({ title }) => {
+  console.count('user title')
   return (
     <Grid
       width="50%"
@@ -28,4 +31,4 @@ export const UserTitle = ({ title }) => {
       </Typography>
     </Grid>
   );
-};
+});
