@@ -13,9 +13,15 @@ import { LogoutOutlined } from "@mui/icons-material";
 
 import { SearchComponent } from "./SearchComponent";
 import { memo } from "react";
+import { logout } from "../../../store";
+import { useDispatch } from "react-redux";
 
 export const NavBar = memo(() => {
-  console.count('navBar')
+  const dispatch = useDispatch();
+  const onLogout = () => {
+    //resetPage();
+    dispatch(logout());
+  };
   return (
     <AppBar position="fixed" color="secondary" sx={{ height: "9%" }}>
       <Toolbar>
@@ -50,7 +56,7 @@ export const NavBar = memo(() => {
               {" "}
               Logout{" "}
             </Typography>
-            <IconButton color="error" component={RouterLink} to="/login">
+            <IconButton color="error" onClick={onLogout}>
               <LogoutOutlined sx={{ color: "#ffff" }} />
             </IconButton>
           </Grid>

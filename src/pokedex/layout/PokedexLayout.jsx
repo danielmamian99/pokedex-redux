@@ -19,7 +19,7 @@ export const PokedexLayout = ({ children }) => {
             justifyContent: "center",
           }}
         >
-          <UserTitle title="Jeferson Daniel Mamian" />
+          <UserTitle/>
         </Grid>
         <Grid container justifyContent="center" alignItems="center">
           {children}

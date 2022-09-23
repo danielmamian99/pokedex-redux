@@ -4,10 +4,19 @@ import { useState } from "react";
 import { Button, Grid, Link, TextField, Typography } from "@mui/material";
 
 import { AuthLayout } from "../layout/AuthLayout";
+import { useDispatch, useSelector } from "react-redux";
+import { register, resetLoginStatus } from "../../store";
+import { useEffect } from "react";
 
 export const RegisterPage = () => {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  useEffect(() => {
+    dispatch(resetLoginStatus())
+  },[])
+  
+  const {registerStatus} = useSelector((state)=>state.authentication)
   const handleName = (event) => {
     setName(event.target.value);
   };
@@ -18,6 +27,7 @@ export const RegisterPage = () => {
     event.preventDefault();
 
     if (!name || !password) return;
+    dispatch(register({name, password}))
   };
   return (
     <AuthLayout title="Create account">
@@ -62,14 +72,14 @@ export const RegisterPage = () => {
               Login
             </Link>
           </Grid>
-          {/* {registerStatus != "" && (
+          {registerStatus != "" && (
             <Typography
               fontWeight="bold"
               color={registerStatus === "Sucess" ? "#4ab03a" : "secondary"}
             >
               {registerStatus}
             </Typography>
-          )} */}
+          )}
         </Grid>
       </form>
     </AuthLayout>

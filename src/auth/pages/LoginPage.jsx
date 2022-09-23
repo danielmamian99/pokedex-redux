@@ -5,8 +5,16 @@ import { Link as RouterLink } from "react-router-dom";
 import { Button, Grid, Link, TextField, Typography } from "@mui/material";
 
 import { AuthLayout } from "../layout/AuthLayout";
+import { useDispatch, useSelector } from "react-redux";
+import { login, resetRegisterStatus } from "../../store";
+import { useEffect } from "react";
 
 export const LoginPage = () => {
+  useEffect(() => {
+    dispatch(resetRegisterStatus());
+  },[])
+  
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -16,10 +24,12 @@ export const LoginPage = () => {
   const handlePassword = (event) => {
     setPassword(event.target.value);
   };
+  const {loginStatus} = useSelector((state)=>state.authentication)
+  if(loginStatus === 'sucess') navigate("/pokedex/home");
   const onLogin = (event) => {
     event.preventDefault();
     if (!name || !password) return;
-    navigate("/pokedex/home");
+    dispatch(login({name, password}))
   };
 
   return (
@@ -58,12 +68,12 @@ export const LoginPage = () => {
               </Button>
             </Grid>
           </Grid>
-          {/* {loginStatus != "" && (
+          {loginStatus != "" && (
             <Typography fontWeight="bold" color="secondary">
               {" "}
               {loginStatus}{" "}
             </Typography>
-          )} */}
+          )}
           <Grid container direction="row" justifyContent="end">
             <Link component={RouterLink} color="inherit" to="/register">
               Create account

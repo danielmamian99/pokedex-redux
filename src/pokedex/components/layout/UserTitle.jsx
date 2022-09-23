@@ -1,9 +1,10 @@
 import { Grid, Typography } from "@mui/material";
 import { memo } from "react";
+import { useSelector } from "react-redux";
 
 
-export const UserTitle = memo(({ title }) => {
-  console.count('user title')
+export const UserTitle = memo(() => {
+  const {currentUser} = useSelector((state)=>state.authentication)
   return (
     <Grid
       width="50%"
@@ -27,7 +28,7 @@ export const UserTitle = memo(({ title }) => {
         color="white"
         component="h2"
       >
-        ¡Pokedex {title}!
+        ¡Pokedex {currentUser.user}!
       </Typography>
     </Grid>
   );

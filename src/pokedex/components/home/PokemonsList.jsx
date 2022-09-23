@@ -2,16 +2,18 @@ import { Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useGetPokemonsQuery } from "../../../store/apis";
 
-import { PokemonCard, Spinner } from "../generals";
+import { Error, PokemonCard, Spinner } from "../generals";
 
 export const PokemonsList = () => {
   const urlImage =
     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
   const { page } = useSelector((state) => state.page);
-  const { data, isLoading } = useGetPokemonsQuery(page);
+  const { data, isLoading, isError } = useGetPokemonsQuery(page);
   return (
     <>
-      {isLoading ? (
+      {isError ? (
+        <Error />
+      ) : isLoading ? (
         <Spinner />
       ) : (
         <Grid container direction="row" justifyContent="center">
@@ -29,7 +31,6 @@ export const PokemonsList = () => {
               <PokemonCard
                 urlImage={urlImage + (id + 1 + (page - 1) * 12) + ".png"}
                 name={item.name}
-                pokemonId={id + 1 + (page - 1) * 12}
               />
             </Grid>
           ))}
