@@ -20,12 +20,6 @@ export const LoginPage = () => {
     name: '',
     password: '',
   })
-  const handleName = (event) => {
-    setName(event.target.value);
-  };
-  const handlePassword = (event) => {
-    setPassword(event.target.value);
-  };
   const {loginStatus} = useSelector((state)=>state.authentication)
   if(loginStatus === 'sucess') navigate("/pokedex/home");
   const onLogin = (event) => {
