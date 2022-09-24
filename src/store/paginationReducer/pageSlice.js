@@ -24,4 +24,4 @@ export const pageSlice = createSlice({
 });
 
 
-export const { setPage } = pageSlice.actions;
+export const { setPage, resetPage } = pageSlice.actions;

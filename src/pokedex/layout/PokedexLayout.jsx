@@ -1,6 +1,7 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 import { NavBar, UserTitle } from "../components";
+
 
 export const PokedexLayout = ({ children }) => {
   return (

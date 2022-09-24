@@ -13,13 +13,13 @@ import { LogoutOutlined } from "@mui/icons-material";
 
 import { SearchComponent } from "./SearchComponent";
 import { memo } from "react";
-import { logout } from "../../../store";
+import { logout, resetPage } from "../../../store";
 import { useDispatch } from "react-redux";
 
 export const NavBar = memo(() => {
   const dispatch = useDispatch();
   const onLogout = () => {
-    //resetPage();
+    dispatch(resetPage());
     dispatch(logout());
   };
   return (
