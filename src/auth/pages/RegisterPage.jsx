@@ -1,5 +1,4 @@
 import { Link as RouterLink } from "react-router-dom";
-import { useState } from "react";
 
 import { Button, Grid, Link, TextField, Typography } from "@mui/material";
 
@@ -7,22 +6,20 @@ import { AuthLayout } from "../layout/AuthLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { register, resetLoginStatus } from "../../store";
 import { useEffect } from "react";
+import { useForm } from "../../hooks";
 
 export const RegisterPage = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+  const {name , password, onInputChange} = useForm({
+    name: '',
+    password: '',
+  })
+
   useEffect(() => {
     dispatch(resetLoginStatus())
   },[])
   
   const {registerStatus} = useSelector((state)=>state.authentication)
-  const handleName = (event) => {
-    setName(event.target.value);
-  };
-  const handlePassword = (event) => {
-    setPassword(event.target.value);
-  };
   const onRegister = (event) => {
     event.preventDefault();
 
@@ -39,7 +36,9 @@ export const RegisterPage = () => {
               type="name"
               placeholder="Username"
               fullWidth
-              onChange={handleName}
+              name="name"
+              value={name}
+              onChange={onInputChange}
             />
           </Grid>
 
@@ -49,7 +48,9 @@ export const RegisterPage = () => {
               type="password"
               placeholder="Password"
               fullWidth
-              onChange={handlePassword}
+              name="password"
+              value={password}
+              onChange={onInputChange}
             />
           </Grid>
 

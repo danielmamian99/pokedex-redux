@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -8,6 +7,7 @@ import { AuthLayout } from "../layout/AuthLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { login, resetRegisterStatus } from "../../store";
 import { useEffect } from "react";
+import { useForm } from "../../hooks";
 
 export const LoginPage = () => {
   useEffect(() => {
@@ -16,8 +16,10 @@ export const LoginPage = () => {
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+  const {name , password, onInputChange} = useForm({
+    name: '',
+    password: '',
+  })
   const handleName = (event) => {
     setName(event.target.value);
   };
@@ -42,7 +44,9 @@ export const LoginPage = () => {
               type="name"
               placeholder="Username"
               fullWidth
-              onChange={handleName}
+              name="name"
+              value={name}
+              onChange={onInputChange}
             />
           </Grid>
 
@@ -52,7 +56,9 @@ export const LoginPage = () => {
               type="password"
               placeholder="Password"
               fullWidth
-              onChange={handlePassword}
+              name="password"
+              value={password}
+              onChange={onInputChange}
             />
           </Grid>
 
