@@ -17,7 +17,8 @@ export const UserTitle = memo(() => {
         borderRadius: 1,
         wordWrap: "break-word",
         backgroundColor: "#4ab03a",
-        marginTop: {xs: "1.5em", sm: "2em", md: "2.5em", lg:"4em"}
+        marginTop: {xs: "1.5em", sm: "2em", md: "2.5em", lg:"4em"},
+        marginBottom: {xs: "1em", sm: "0em", md: "0em"}
       }}
     >
       <Typography

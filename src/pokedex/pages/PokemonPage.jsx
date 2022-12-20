@@ -33,7 +33,9 @@ export const PokemonPage = () => {
             alignItems="center"
             justifyContent="center"
           >
-            <Grid item xs={12} sm={6}>
+            <Grid 
+            paddingX={{ xs: 2, sm: 0, md: 0 }}
+            item xs={12} sm={6}>
               <PokemonCard urlImage={pokemon.sprites.other['official-artwork']['front_default']} name={pokemon.name} />
             </Grid>
             <Grid item xs={8} sm={6} sx={{ height: "100%" }}>
@@ -41,6 +43,7 @@ export const PokemonPage = () => {
             </Grid>
           </Grid>
           <Grid
+            paddingX={{ xs: 2, sm: 0, md: 0 }}
             sx={{
               display: "flex",
               marginTop: "1rem",
