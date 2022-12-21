@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 
 import pokeball from "../../assets/images/mega-bola.png";
-import pokedexImg from "../../assets/images/pokedex logo.png";
+import pokedexImg from "../../assets/images/Pokedex-logo.png";
 
 export const AuthLayout = ({ children, title = "" }) => {
   return (
